@@ -20,6 +20,9 @@ def build():
 @app.route('/display')
 def dispaly():
     return render_template('display.html')
+@app.route('/health')
+def health():
+    return jsonify({"status": "healthy"}), 200
 @app.route('/update', methods=['POST'])
 def update_data():
      df = pd.DataFrame([[0, 0, 0, 0, 0, 0]], columns=['Total Price', 'usage_Basic', 'usage_Entertainment', 'usage_Gaming', 'usage_High Performance', 'usage_Productivity'])
