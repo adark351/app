@@ -1,26 +1,19 @@
-FROM python:3.9-slim-buster
+# Use an official Python runtime as a parent image
+FROM python:3.9
 
-# System dependencies
-RUN apt-get update && \
-    apt-get install -y --no-install-recommends \
-    build-essential \
-    cmake \
-    libgomp1 \
-    python3-dev \
-    && rm -rf /var/lib/apt/lists/*
-
+# Set the working directory in the container
 WORKDIR /app
 
-# Install Python dependencies first for caching
-COPY requirements.txt .
-RUN pip install --upgrade pip && \
-    pip install --no-cache-dir -r requirements.txt
-
-# Copy application code
+# Copy the current directory contents into the container
 COPY . .
 
+# Install required dependencies
+RUN pip install --no-cache-dir -r requirements.txt
+
+# Set the environment variable for Flask
 ENV FLASK_APP=app.py
 ENV FLASK_RUN_HOST=0.0.0.0
-EXPOSE 5000
+ENV FLASK_RUN_PORT=5000
 
+# Use the full Python path to start Flask
 CMD ["python", "-m", "flask", "run"]
