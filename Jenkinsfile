@@ -21,7 +21,7 @@ pipeline {
         stage('Build Docker Image') {
             steps {
                 script {
-                     sh "DOCKER_BUILDKIT=1 docker build -t ${DOCKER_REGISTRY}/${APP_NAME}:${IMAGE_TAG} ."
+                     sh "sudo docker build -t ${DOCKER_REGISTRY}/${APP_NAME}:${IMAGE_TAG} ."
                 }
             }
         }
