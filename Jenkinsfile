@@ -13,7 +13,7 @@ pipeline {
         // Stage 1: Checkout the code from GitHub
         stage('Checkout') {
             steps {
-                git branch: 'main', url: "${GIT_REPO}"
+                git branch: 'main', url: "${GIT_REPO}" // Use 'main' instead of 'master'
             }
         }
 
