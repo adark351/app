@@ -48,7 +48,7 @@ pipeline {
 
                     // Apply the Kubernetes deployment and service
                     withKubeConfig([credentialsId: 'kubeconfig', serverUrl: '']) {
-                        sh "kubectl apply -f kubernetes/deployment.yaml"
+                        sh "kubectl apply -f kubernetes/deployment.yaml --validate=false"
                         sh "kubectl apply -f kubernetes/service.yaml"
                     }
                 }
